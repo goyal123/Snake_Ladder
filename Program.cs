@@ -4,55 +4,48 @@
     {
         static void Main(string[] args)
         {
-            int player_pos = 0,dice_num,options,sum=0,count=0;
+            int player1_pos=0,player2_pos = 0,dice_num,options,count=0;
             Console.WriteLine("Welcome to Snake Ladder Game!");
             Random rand=new Random();
-                    
-            while (player_pos != 100)
+
+            while ((player1_pos != 100) && (player2_pos != 100))
             {
-                dice_num = rand.Next(1, 6);
+                dice_num = RollDice.Dice_Roll();
                 count += 1;
                 Console.WriteLine("Number on dice = " + dice_num);
-                options = rand.Next(0, 3);
+                options = RollDice.Roll_Options();
                 Console.WriteLine("Choosing option " + options);
-                switch (options)
+
+                if (count % 2 == 1)
                 {
-                    case 0:
-                        player_pos = sum; ;
-                        Console.WriteLine("Player position = " + player_pos);
+                    player1_pos = MultiPlayer.Multigame(player1_pos, dice_num, options);
+                    Console.WriteLine("Player 1 position = " + player1_pos);
+                    if (player1_pos == 100)
+                    {
+                        Console.WriteLine("\nWinner of Game is Player 1");
                         break;
+                    }
+                    else
+                        continue;
 
-                    case 1:
-                        if ((sum + dice_num) > 100)
-                            sum = player_pos;
-
-                        else if ((sum + dice_num) <= 100)
-                        {
-                            sum = sum + dice_num;
-                            player_pos = sum;
-                        }
-                        Console.WriteLine("Player position = " + player_pos);
-                        break;
-
-                    case 2:
-                        if ((sum - dice_num) < 0)
-                        {
-                            sum = 0;
-                            player_pos = 0;
-
-                        }
-                        else
-                        {
-                            sum = sum - dice_num;
-                            player_pos = sum;
-                        }
-                        Console.WriteLine("Player position = " + player_pos);
-                        break;
                 }
+                else
+                {
+                    player2_pos = MultiPlayer.Multigame(player2_pos, dice_num, options);
+                    Console.WriteLine("Player 2 position = " + player2_pos);
+                    if (player2_pos == 100)
+                    {
+                        Console.WriteLine("\nWinner of Game is Player 2");
+                        break;
+                    }
+                    else
+                        continue;
+
+                }
+                  
             }
-            Console.WriteLine("No of times dice played to win = " + count);
-
-
+                
+            
 
         }
     }
