@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            int player_pos = 0;
+            Console.WriteLine("Welcome to Snake Ladder Game!");
+
         }
     }
 }
