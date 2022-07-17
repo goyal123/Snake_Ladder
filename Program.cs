@@ -25,7 +25,7 @@
                         if ((sum + dice_num) > 100)
                             sum = player_pos;
 
-                        if ((sum + dice_num) < 100)
+                        else if ((sum + dice_num) <= 100)
                         {
                             sum = sum + dice_num;
                             player_pos = sum;
